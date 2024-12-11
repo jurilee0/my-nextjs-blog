@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { CustomMDX } from "app/components/mdx";
-import { formatDate, getBlogPosts } from "app/blog/utils";
-import { baseUrl } from "app/sitemap";
-import { getViewsCount, incrementPageView } from "actions";
+import { CustomMDX } from "@/components/mdx";
+import { formatDate, getBlogPosts } from "@/blog/utils";
+import { baseUrl } from "@/sitemap";
+import { getViewsCount, incrementPageView } from "@/actions";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
