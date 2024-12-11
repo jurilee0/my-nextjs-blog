@@ -52,12 +52,6 @@ export function generateMetadata({ params }) {
   };
 }
 
-export async function getViewsCounter(): Promise<
-  { slug: string; count: number }[]
-> {
-  return [{ slug: "vim", count: 1234 }];
-}
-
 export default async function Blog({ params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
 
