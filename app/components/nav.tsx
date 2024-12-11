@@ -3,10 +3,10 @@ import { ThemeSwitcher } from "./theme";
 
 const navItems = {
   "/": {
-    name: "home",
+    name: "HOME",
   },
   "/blog": {
-    name: "blog",
+    name: "BLOG",
   },
   // 'https://vercel.com/templates/next.js/portfolio-starter-kit': {
   //   name: 'deploy',
@@ -16,7 +16,7 @@ const navItems = {
 export function Navbar() {
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="lg:sticky lg:top-20">
+      <div className="lg:sticky lg:top-20 flex justify-between">
         <nav
           className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
