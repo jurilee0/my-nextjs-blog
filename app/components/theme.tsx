@@ -5,8 +5,20 @@ type Theme = "light" | "dark";
 
 export const ThemeSwitcher = () => {
   const [theme, setTheme] = useState<Theme>("light");
+  const [mounted, setMounted] = useState(false);
+
+  const applyTheme = (nextTheme: Theme) => {
+    localStorage.setItem("theme", nextTheme);
+    setTheme(nextTheme);
+    if (nextTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   useEffect(() => {
+    setMounted(true);
     if (!("theme" in localStorage)) {
       const isDarkMode = window.matchMedia(
         "(prefers-color-scheme: dark)"
@@ -20,15 +32,9 @@ export const ThemeSwitcher = () => {
     applyTheme(currentTheme);
   }, []);
 
-  const applyTheme = (nextTheme: Theme) => {
-    localStorage.setItem("theme", nextTheme);
-    setTheme(nextTheme);
-    if (nextTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
+  if (!mounted) {
+    return <div className="w-5 h-5" />;
+  }
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
