@@ -12,16 +12,16 @@ import { themeEffect } from "@/utils/themeEffect";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Next.js Portfolio Starter",
-    template: "%s | Next.js Portfolio Starter",
+    default: "jurilee's blog",
+    template: "%s | jurilee's blog",
   },
-  description: "This is my portfolio.",
+  description: "welcome to jurilee's blog",
   openGraph: {
-    title: "My Portfolio",
-    description: "This is my portfolio.",
+    title: "jurilee's blog",
+    description: "welcome to jurilee's blog",
     url: baseUrl,
-    siteName: "My Portfolio",
-    locale: "en_US",
+    siteName: "jurilee's blog",
+    locale: "ko-KR",
     type: "website",
   },
   robots: {
@@ -46,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="ko"
       className={cx(
         "text-black bg-white dark:text-white dark:bg-black",
         GeistSans.variable,
