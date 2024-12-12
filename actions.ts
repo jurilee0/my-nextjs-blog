@@ -1,5 +1,6 @@
 "use server";
 import { neon } from "@neondatabase/serverless";
+import { unstable_noStore as noStore } from "next/cache";
 
 export async function getData() {
   if (!process.env.DATABASE_URL) {
@@ -11,6 +12,7 @@ export async function getData() {
 }
 
 export async function getViewsCount(slug: string) {
+  noStore();
   if (!process.env.DATABASE_URL) {
     throw new Error("DATABASE_URL is not defined");
   }
@@ -23,6 +25,7 @@ export async function getViewsCount(slug: string) {
 }
 
 export async function incrementPageView(slug: string) {
+  noStore();
   if (!process.env.DATABASE_URL) {
     throw new Error("DATABASE_URL is not defined");
   }
