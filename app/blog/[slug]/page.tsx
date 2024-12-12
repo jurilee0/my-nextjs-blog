@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { formatDate, getBlogPosts } from "@/blog/utils";
 import { baseUrl } from "@/sitemap";
-import { getViewsCount, incrementPageView } from "@/actions";
+import { Suspense } from "react";
+import ViewCounter from "@/components/ViewCounter";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -59,9 +60,6 @@ export default async function Blog({ params }) {
     notFound();
   }
 
-  await incrementPageView(params.slug);
-  const count = await getViewsCount(params.slug);
-
   return (
     <section>
       <script
@@ -93,9 +91,9 @@ export default async function Blog({ params }) {
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {count?.toLocaleString() ?? 0} views
-        </p>
+        <Suspense fallback="loading...">
+          <ViewCounter slug={params.slug} />
+        </Suspense>
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />
