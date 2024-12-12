@@ -3,7 +3,7 @@ import { CustomMDX } from "@/components/mdx";
 import { formatDate, getBlogPosts } from "@/blog/utils";
 import { baseUrl } from "@/sitemap";
 import { Suspense } from "react";
-import ViewCounter from "@/components/ViewCounter";
+import ViewCounter from "@/components/view-counter";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
