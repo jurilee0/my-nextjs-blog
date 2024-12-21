@@ -2,7 +2,6 @@
 
 This is a personal blog created using a Vercel template.
 
-## URL
 https://my-nextjs-blog-ten.vercel.app/
 
 ## Tech Stack
