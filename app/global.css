@@ -19,16 +19,16 @@
   --sh-entity: #e25a1c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
-  }
-  html {
-    color-scheme: dark;
-  }
+.dark {
+  --sh-class: #6ab0f3;
+  --sh-identifier: #e6e6e6;
+  --sh-sign: #79b8ff;
+  --sh-string: #98c379;
+  --sh-keyword: #ff7b72;
+  --sh-comment: #6b737c;
+  --sh-jsxliterals: #b392f0;
+  --sh-property: #79b8ff;
+  --sh-entity: #79b8ff;
 }
 
 html {

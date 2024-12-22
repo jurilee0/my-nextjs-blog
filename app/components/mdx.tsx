@@ -56,7 +56,18 @@ function Code({ children, ...props }) {
   }
 
   try {
-    const codeHTML = highlight(content);
+    let codeHTML = highlight(content);
+
+    codeHTML = codeHTML
+      .replace(/color:#2d5e9d/g, "color:var(--sh-class)")
+      .replace(/color:#354150/g, "color:var(--sh-identifier)")
+      .replace(/color:#8996a3/g, "color:var(--sh-sign)")
+      .replace(/color:#007f7a/g, "color:var(--sh-string)")
+      .replace(/color:#e02518/g, "color:var(--sh-keyword)")
+      .replace(/color:#a19595/g, "color:var(--sh-comment)")
+      .replace(/color:#6266d1/g, "color:var(--sh-jsxliterals)")
+      .replace(/color:#e25a1c/g, "color:var(--sh-property)");
+
     return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
   } catch (error) {
     console.error("Syntax highlighting failed:", error);
