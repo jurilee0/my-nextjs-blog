@@ -2,13 +2,25 @@
 import { neon } from "@neondatabase/serverless";
 import { unstable_noStore as noStore } from "next/cache";
 
-export async function getData() {
+export async function initDatabase() {
   if (!process.env.DATABASE_URL) {
     throw new Error("DATABASE_URL is not defined");
   }
+
   const sql = neon(process.env.DATABASE_URL);
-  const data = await sql`...`;
-  return data;
+
+  try {
+    await sql`
+      CREATE TABLE IF NOT EXISTS page_views(
+        slug TEXT PRIMARY KEY,
+        views INTEGER DEFAULT 0
+      );
+    `;
+    return { success: true };
+  } catch (error) {
+    console.error("Database error:", error);
+    throw error;
+  }
 }
 
 export async function getViewsCount(slug: string) {
@@ -17,6 +29,14 @@ export async function getViewsCount(slug: string) {
     throw new Error("DATABASE_URL is not defined");
   }
   const sql = neon(process.env.DATABASE_URL);
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS page_views(
+      slug TEXT PRIMARY KEY,
+      views INTEGER DEFAULT 0
+    );
+  `;
+
   const views = await sql`
     SELECT views FROM page_views 
     WHERE slug = ${slug}
@@ -30,6 +50,14 @@ export async function incrementPageView(slug: string) {
     throw new Error("DATABASE_URL is not defined");
   }
   const sql = neon(process.env.DATABASE_URL);
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS page_views(
+      slug TEXT PRIMARY KEY,
+      views INTEGER DEFAULT 0
+    );
+  `;
+
   await sql`
     INSERT INTO page_views (slug, views) 
     VALUES (${slug}, 1)
