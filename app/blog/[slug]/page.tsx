@@ -91,9 +91,9 @@ export default async function Blog({ params }) {
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
-        <Suspense fallback="loading...">
+        {/* <Suspense fallback="loading...">
           <ViewCounter slug={params.slug} />
-        </Suspense>
+        </Suspense> */}
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />
